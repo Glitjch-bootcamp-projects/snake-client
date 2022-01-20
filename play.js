@@ -1,4 +1,7 @@
-const connect = require(`./client`);
+const { connect } = require(`./client`);
+const { setupInput } = require(`./input`)
 
 console.log(`Play.js file read. Rice is cooking...`);
-connect();
+
+
+setupInput(connect());

@@ -16,21 +16,11 @@ const connect = function () {
   conn.on("connect", () => {
     console.log('Client module succesfully exported. You are now connected to the game server.');
 
-    setTimeout(() => {
-      conn.write("")
-    }, 2000);
-
   });
 
-
-
-  // conn.on("ready", (data) => {
-  //   console.log('data:', data);
-  // });
-  // interpret incoming data as Text
   conn.setEncoding("utf8");
 
   return conn;
 }
 
-module.exports = connect;
+module.exports = { connect };
