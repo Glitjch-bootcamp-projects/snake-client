@@ -1,61 +1,41 @@
+const { MOVE_UP_KEY, MOVE_DOWN_KEY, MOVE_LEFT_KEY, MOVE_RIGHT_KEY, allUserKeys } = require(`./constants`);
 let connection;
 
 
-const handleUserInput = function(key) {
+const handleUserInput = function (key) {
   // Exit the server (not just the terminal)
   if (key === '\u0003') {
-    console.log("I'm outta here.");
+    console.log(`I'm outta here.`);
     process.exit();
-  }
+  };
 
   // Directional commands
   // Up W key
   if (key === `\u0077`) {
-    connection.write("Move: up");
-    // console.log("up");
-  }
+    connection.write(MOVE_UP_KEY);
+  };
   // Left A key
   if (key === '\u0061') {
-    connection.write("Move: left");
-    // console.log("left");
-  }
+    connection.write(MOVE_LEFT_KEY);
+  };
   // Down S key
   if (key === '\u0073') {
-    connection.write("Move: down");
-    // console.log("down");
-  }
+    connection.write(MOVE_DOWN_KEY);
+  };
   // Right D key
   if (key === '\u0064') {
-    connection.write("Move: right");
-    // console.log("right");
-  }
+    connection.write(MOVE_RIGHT_KEY);
+  };
 
-  // Press Q to send message
-  if (key === "\u0071") {
-    connection.write(`Say: Hello mudda.`);
-  }
-
-  // Press E to send message
-  if (key === "\u0065") {
-    connection.write(`Say: Hello fadda.`);
-  }
-
-  // Press Z to send message
-  if (key === "\u007A") {
-    connection.write(`Say: Here I am at.`);
-  }
-
-  // Press C to send message
-  if (key === "\u0063") {
-    connection.write(`Say: Camp Grenada.`);
-  }
-  // create a special key to send messages using Say:
+  if (key) {
+    connection.write(`Say: ${allUserKeys[key]}`)
+  };
 };
 
 
 
 
-const setupInput = function(conn) {
+const setupInput = function (conn) {
   connection = conn;
 
   const stdin = process.stdin;
